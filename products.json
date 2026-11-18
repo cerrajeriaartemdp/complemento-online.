@@ -1,0 +1,101 @@
+[
+  {
+    "sku": "7798356616398",
+    "name": "Mooving Acuarelados XL x24",
+    "description": "Lápices acuarelables XL de 24 unidades.",
+    "price": 22000,
+    "brand": "Mooving",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-01.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7798302936976",
+    "name": "Mooving Vive tus Colores x12",
+    "description": "Lápices de colores de 12 unidades.",
+    "price": 6700,
+    "brand": "Mooving",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-02.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7798302937003",
+    "name": "Mooving Neon Fest x6",
+    "description": "Lápices de colores neón de 6 unidades.",
+    "price": 5400,
+    "brand": "Mooving",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-03.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7795513044728",
+    "name": "Filgo Pinto x12",
+    "description": "Lápices de colores Filgo Pinto de 12 unidades.",
+    "price": 1900,
+    "brand": "Filgo",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-04.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7795513049594",
+    "name": "Filgo Pinto x24",
+    "description": "Lápices de colores Filgo Pinto de 24 unidades.",
+    "price": 4200,
+    "brand": "Filgo",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-05.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7798356616381",
+    "name": "Mooving Acuarelados x12",
+    "description": "Lápices acuarelables de 12 unidades.",
+    "price": 11500,
+    "brand": "Mooving",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-06.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7798302937027",
+    "name": "Mooving Inseparables x12 (24 colores)",
+    "description": "12 lápices de doble punta con 24 colores.",
+    "price": 9600,
+    "brand": "Mooving",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-07.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7795513177617",
+    "name": "Filgo Pinto x48",
+    "description": "Lápices de colores Filgo Pinto de 48 unidades.",
+    "price": 11500,
+    "brand": "Filgo",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-08.webp",
+    "availability": "Consultar"
+  },
+  {
+    "sku": "7798100963037",
+    "name": "Filgo Pinto x60",
+    "description": "Lápices de colores Filgo Pinto de 60 unidades.",
+    "price": 16000,
+    "brand": "Filgo",
+    "category": "Lápices de colores",
+    "active": true,
+    "image_url": "assets/product-09.webp",
+    "availability": "Consultar"
+  }
+]
