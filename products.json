@@ -7,7 +7,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-01.svg",
+    "image_url": "assets/hq-01.b64",
     "availability": "Consultar"
   },
   {
@@ -18,7 +18,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-02.svg",
+    "image_url": "assets/hq-02.b64",
     "availability": "Consultar"
   },
   {
@@ -29,7 +29,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-03.svg",
+    "image_url": "assets/hq-03.b64",
     "availability": "Consultar"
   },
   {
@@ -40,7 +40,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-04.svg",
+    "image_url": "assets/hq-04.b64",
     "availability": "Consultar"
   },
   {
@@ -51,7 +51,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-05.svg",
+    "image_url": "assets/hq-05.b64",
     "availability": "Consultar"
   },
   {
@@ -62,7 +62,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-06.svg",
+    "image_url": "assets/hq-06.b64",
     "availability": "Consultar"
   },
   {
@@ -73,7 +73,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-07.svg",
+    "image_url": "assets/hq-07.b64",
     "availability": "Consultar"
   },
   {
@@ -84,7 +84,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-08.svg",
+    "image_url": "assets/hq-08.b64",
     "availability": "Consultar"
   },
   {
@@ -95,7 +95,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-09.svg",
+    "image_url": "assets/hq-09.b64",
     "availability": "Consultar"
   }
 ]
