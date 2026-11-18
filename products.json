@@ -7,7 +7,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-01.webp",
+    "image_url": "assets/product-01.svg",
     "availability": "Consultar"
   },
   {
@@ -18,7 +18,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-02.webp",
+    "image_url": "assets/product-02.svg",
     "availability": "Consultar"
   },
   {
@@ -29,7 +29,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-03.webp",
+    "image_url": "assets/product-03.svg",
     "availability": "Consultar"
   },
   {
@@ -40,7 +40,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-04.webp",
+    "image_url": "assets/product-04.svg",
     "availability": "Consultar"
   },
   {
@@ -51,7 +51,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-05.webp",
+    "image_url": "assets/product-05.svg",
     "availability": "Consultar"
   },
   {
@@ -62,7 +62,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-06.webp",
+    "image_url": "assets/product-06.svg",
     "availability": "Consultar"
   },
   {
@@ -73,7 +73,7 @@
     "brand": "Mooving",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-07.webp",
+    "image_url": "assets/product-07.svg",
     "availability": "Consultar"
   },
   {
@@ -84,7 +84,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-08.webp",
+    "image_url": "assets/product-08.svg",
     "availability": "Consultar"
   },
   {
@@ -95,7 +95,7 @@
     "brand": "Filgo",
     "category": "Lápices de colores",
     "active": true,
-    "image_url": "assets/product-09.webp",
+    "image_url": "assets/product-09.svg",
     "availability": "Consultar"
   }
 ]
