@@ -1,0 +1,1 @@
+window.COMPLEMENTO_DB={url:"https://dnlgkunrfdhjedkvrcve.supabase.co",key:"sb_publishable_RzeXlMu1X-bDLVZGohFVCw_Gv0hfIwc"};
