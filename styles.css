@@ -29,3 +29,7 @@
 
 /* Logo completamente negro */
 .top .logo,.top .logo span{color:#111!important}
+
+/* Buscador directo en la parte superior */
+.top-search #search{display:block;flex:1;width:100%;min-width:0;padding:12px 15px;border:1px solid #e7dfe3;border-radius:10px;background:#faf9fa}
+@media(max-width:650px){.top-search #search{font-size:14px;padding:12px}}
