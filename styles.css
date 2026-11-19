@@ -37,3 +37,20 @@
 /* Compra fácil: categorías, filtros, carrito y entrega */
 .category-section{margin:22px 0 26px}.category-title h2{font-size:clamp(23px,3vw,31px);margin:5px 0 14px;letter-spacing:-.8px}.category-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}.category-tile{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 10px;background:white;border:1px solid #efe1e7;border-radius:15px;color:#332733;font-weight:700;min-height:74px;transition:background .2s,border-color .2s}.category-tile.selected,.category-tile:hover{background:#fff0f5;border-color:#e75082}.category-emoji{font-size:26px}.results-count{font-size:13px;color:#655963;margin:0 0 13px}.clear-filters{background:#fff0f5;color:#b83b6b;border:1px solid #f2d0dd;border-radius:10px;padding:10px 13px;font-weight:700}.delivery-choice{border:1px solid #eee1e7;border-radius:12px;padding:13px;margin:0;display:grid;gap:12px}.delivery-choice legend{font-size:14px;font-weight:800;padding:0 5px}.delivery-choice label{display:flex;align-items:center;gap:9px;font-size:14px;cursor:pointer}.delivery-choice input{accent-color:#e75082;width:18px;height:18px}.delivery-choice .hint{margin:0}.mobile-cart{display:none}.featured-section[hidden],.category-section[hidden],.mobile-cart[hidden],#deliveryAddress[hidden],.clear-filters[hidden]{display:none!important}
 @media(max-width:650px){body:has(.mobile-cart:not([hidden])){padding-bottom:76px}.category-section{margin:18px 0 22px}.category-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.category-tile{min-height:61px;padding:10px 7px;font-size:12px;gap:6px}.category-emoji{font-size:22px}.mobile-cart:not([hidden]){position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:65px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#29212c;color:#fff;border:0;box-shadow:0 -4px 20px #1b101b33;font-size:12px}.mobile-cart strong{font-size:13px}.mobile-cart>span:last-child{font-weight:800;color:#ffc6da}.tools{display:flex;align-items:stretch}.tools select{flex:1 1 calc(50% - 8px)}.clear-filters{flex:1 1 100%}.drawer{padding:18px 16px}.delivery-choice{padding:11px}}
+
+/* Destacados proporcionados en escritorio */
+@media(min-width:851px){
+ .featured-section{max-width:100%;overflow:hidden}
+ .featured-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 48px)/4);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:stretch}
+ .featured-card{width:100%;min-width:0;max-width:none;flex-basis:auto;border-radius:15px}
+ .featured-photo{aspect-ratio:4/3;max-height:205px;padding:12px;overflow:hidden}
+ .featured-photo img{width:100%;height:100%;object-fit:contain}
+ .featured-body{padding:0 12px 13px;gap:6px}
+ .featured-body h3{font-size:14px;line-height:1.35;min-height:38px}
+ .featured-body .price{font-size:19px}
+ .featured-body .btn{padding:10px 8px;font-size:13px}
+}
+@media(min-width:651px) and (max-width:850px){
+ .featured-card{flex:0 0 calc((100% - 24px)/3);max-width:none}
+ .featured-photo{aspect-ratio:4/3}
+}
