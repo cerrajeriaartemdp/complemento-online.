@@ -18,14 +18,14 @@ function photoDraw(){
  $('#photoModeInput').disabled=!p||photoBusy;
  $('#photoModeNext').disabled=!p||photoBusy;
  $('#photoModeInput').value='';
- if(p)try{localStorage.setItem('complemento_photo_sku',p.sku)}catch(e){}
+
 }
 $('#photoModeOpen').onclick=()=>{
  $('#photoMode').hidden=false;
- try{photoSku=localStorage.getItem('complemento_photo_sku')}catch(e){}
+ photoSku=null; // Al reabrir, volver al primer producto que sigue sin foto.
  photoDraw();$('#photoMode').scrollIntoView({block:'start'});
 };
-$('#photoModeClose').onclick=()=>{$('#photoMode').hidden=true};
+$('#photoModeClose').onclick=()=>{$('#photoMode').hidden=true;photoSku=null};
 $('#photoModeNext').onclick=()=>{
  const list=photoPending(),i=list.findIndex(p=>p.sku===photoSku);
  if(!list.length)return;
