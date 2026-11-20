@@ -34,7 +34,7 @@ suggestions.addEventListener('click',e=>{
  const add=e.target.closest('[data-suggestion-add]');
  if(add){const sku=add.dataset.suggestionAdd;cart[sku]=(cart[sku]||0)+1;saveCart();add.textContent='✓ Agregado';return}
  const item=e.target.closest('[data-search-sku]');
- if(item){const p=products.find(x=>String(x.sku)===item.dataset.searchSku);if(p){searchBox.value=p.name;showSuggestions()}}
+ if(item){const p=products.find(x=>String(x.sku)===item.dataset.searchSku);if(p){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false');if(p.image_url){openPhotoModalForProduct(p)}else{searchBox.value=p.name;render();$('#notice').textContent='Este producto todavía no tiene foto.'}}}
 });
 document.addEventListener('click',e=>{if(!e.target.closest('.top-search')){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false')}});
 searchBox.addEventListener('keydown',e=>{if(e.key==='Escape'){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false')}});
@@ -44,6 +44,7 @@ const photoModal=$('#photoModal'),photoModalImage=$('#photoModalImage');
 let photoReturnFocus=null;
 function closePhotoModal(){if(photoModal.hidden)return;photoModal.hidden=true;photoModalImage.removeAttribute('src');document.body.classList.remove('photo-open');photoReturnFocus?.focus?.()}
 function openPhotoModal(img){if(!img?.getAttribute('src'))return;photoReturnFocus=document.activeElement;photoModalImage.src=img.currentSrc||img.src;photoModalImage.alt=img.alt||'Foto del producto';$('#photoModalCaption').textContent=img.closest('.product,.featured-card')?.querySelector('h3')?.textContent||'';photoModal.hidden=false;document.body.classList.add('photo-open');$('#closePhoto').focus()}
+function openPhotoModalForProduct(p){if(!p?.image_url)return;photoReturnFocus=document.activeElement;photoModalImage.src=p.image_url;photoModalImage.alt='Foto de '+p.name;$('#photoModalCaption').textContent=p.name;photoModal.hidden=false;document.body.classList.add('photo-open');$('#closePhoto').focus()}
 ['#products','#featuredTrack'].forEach(selector=>$(selector).addEventListener('click',event=>{const img=event.target.closest('[data-view-photo]')?.closest('.product,.featured-card')?.querySelector('img')||event.target.closest('.photo img,.featured-photo img');if(img)openPhotoModal(img)}));
 $('#closePhoto').addEventListener('click',closePhotoModal);
 photoModal.addEventListener('click',event=>{if(event.target===photoModal)closePhotoModal()});
