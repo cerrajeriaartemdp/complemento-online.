@@ -152,3 +152,16 @@
  .category-tile .category-emoji{width:39px!important;height:39px!important;flex-basis:39px!important;border-radius:50%!important}
  .category-tile .category-emoji svg{width:23px;height:23px}
 }
+
+/* Cute v2: cambio visual notorio en todas las categorías */
+.category-tiles .category-tile{background:color-mix(in srgb,var(--tile-pastel,#ffe8f0) 54%,white)!important;border:1px solid color-mix(in srgb,var(--tile-pastel,#ffe8f0) 75%,#e8b7c9)!important;box-shadow:none!important;border-radius:21px!important;min-height:116px!important;padding:13px 6px!important;color:#554452!important;font-size:12px!important;font-weight:700!important;line-height:1.22!important}
+.category-tiles .category-tile:nth-child(6n+1){--tile-pastel:#ffdce9}
+.category-tiles .category-tile:nth-child(6n+2){--tile-pastel:#e5e0ff}
+.category-tiles .category-tile:nth-child(6n+3){--tile-pastel:#d9f2e6}
+.category-tiles .category-tile:nth-child(6n+4){--tile-pastel:#fff0c9}
+.category-tiles .category-tile:nth-child(6n+5){--tile-pastel:#dceeff}
+.category-tiles .category-tile:nth-child(6n){--tile-pastel:#ffe3d6}
+.category-tiles .category-tile .category-emoji{width:54px!important;height:54px!important;flex:0 0 54px!important;border-radius:19px!important;background:#ffffffc9!important;color:#8d5475!important;box-shadow:0 2px 8px #80566b0e!important}
+.category-tiles .category-tile .category-emoji svg{width:32px!important;height:32px!important;stroke-width:1.65!important}
+.category-tiles .category-tile.selected{outline:2px solid #b95784!important;outline-offset:-2px}
+@media(max-width:650px){.category-tiles .category-tile{min-height:112px!important;padding:12px 5px!important}.category-tiles .category-tile .category-emoji{width:50px!important;height:50px!important;flex-basis:50px!important}.category-tiles .category-tile .category-emoji svg{width:29px!important;height:29px!important}}
