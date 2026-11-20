@@ -103,3 +103,11 @@
  .floating-categories span{font-size:19px}
  .mobile-cart:not([hidden]){display:none!important}
 }
+
+/* Acceso flotante a búsqueda al recorrer productos */
+.floating-search[hidden]{display:none!important}
+.floating-search{display:none}
+@media(max-width:650px){
+ .floating-search:not([hidden]){display:flex;position:fixed;right:157px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:36;align-items:center;justify-content:center;gap:6px;border:1px solid #e5cbd7;border-radius:28px;background:#fff;color:#98305d;padding:13px 12px;box-shadow:0 5px 18px #3b1b2e30;font-size:14px;font-weight:800;min-height:48px}
+ .floating-search span{font-size:13px}
+}
