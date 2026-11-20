@@ -125,3 +125,15 @@
  body.floating-search-open .close-floating-search:not([hidden]){display:block;margin:0 0 10px auto;border:0;background:#f7eef2;border-radius:9px;color:#71314c;padding:9px 12px;font-weight:750}
  body.floating-search-open .floating-search,body.floating-search-open .floating-categories{visibility:hidden}
 }
+
+/* Íconos vectoriales por categoría: pastel, uniformes y compactos */
+.category-tile .category-emoji{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;flex:0 0 46px;border-radius:15px;background:var(--category-tint,#f4edf4);color:#673b60}
+.category-tile .category-emoji svg{display:block;flex:none}
+.category-tile{flex-direction:column;text-align:center;gap:7px}
+.category-sheet-items button .category-emoji{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:37px;height:37px;border-radius:11px;background:var(--category-tint,#f4edf4);color:#673b60;margin-right:8px}
+.category-sheet-items button .category-emoji svg{width:23px;height:23px}
+@media(max-width:650px){
+ .category-tile .category-emoji{width:38px!important;height:38px!important;flex-basis:38px!important;border-radius:12px}
+ .category-tile .category-emoji svg{width:24px;height:24px}
+ .category-tile{min-height:83px!important}
+}
