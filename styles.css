@@ -137,3 +137,18 @@
  .category-tile .category-emoji svg{width:24px;height:24px}
  .category-tile{min-height:83px!important}
 }
+
+/* Estética cute minimal: tarjetas suaves y pequeños dibujos de línea */
+.category-tile{background:#fff!important;border:1px solid #f2e9ed!important;border-radius:18px!important;box-shadow:0 2px 9px #a7607810!important;transition:background .2s,border-color .2s,transform .2s!important}
+.category-tile:active{transform:scale(.97)}
+.category-tile.selected{background:#fff5f8!important;border-color:#dca6bd!important;box-shadow:0 0 0 1px #e9bfd0!important}
+.category-tile .category-emoji{width:43px;height:43px;flex-basis:43px;border-radius:50%;color:#85586d;background:var(--category-tint,#f7f0f5)}
+.category-tile .category-emoji svg{width:25px;height:25px}
+.category-sheet-items button{display:flex;align-items:center;gap:9px;border-color:#f2e8ed!important;border-radius:16px!important;background:#fff!important}
+.category-sheet-items button .category-emoji{width:38px;height:38px;flex:0 0 38px;border-radius:50%;margin:0;color:#85586d}
+.category-sheet-items button .category-emoji svg{width:23px;height:23px}
+@media(max-width:650px){
+ .category-tile{border-radius:15px!important;padding:10px 4px!important;min-height:88px!important}
+ .category-tile .category-emoji{width:39px!important;height:39px!important;flex-basis:39px!important;border-radius:50%!important}
+ .category-tile .category-emoji svg{width:23px;height:23px}
+}
