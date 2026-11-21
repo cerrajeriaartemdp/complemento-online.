@@ -188,3 +188,12 @@
  #categorySheetItems.category-sheet-items button .category-emoji svg{width:17px!important;height:17px!important}
  #categorySheetItems.category-sheet-items button span:not(.category-emoji){font-size:11px!important;margin:0!important}
 }
+
+/* Carrito flotante y categorías: ocultos al abrir el carrito */
+.floating-cart{display:none!important}
+@media(max-width:650px){
+ .floating-cart{display:flex!important;position:fixed;right:155px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:37;align-items:center;justify-content:center;gap:6px;background:#a92f64;color:white;border:0;border-radius:28px;padding:13px 15px;box-shadow:0 5px 18px #3b1b2e55;font-size:14px;font-weight:800;min-height:47px}
+ .floating-cart #floatingCartCount:not([hidden]){display:inline-flex;background:#fff;color:#a92f64;border-radius:30px;padding:2px 6px;font-size:11px}
+ body:has(#cartOverlay.open) #floatingCategories,body:has(#cartOverlay.open) #floatingCart,body:has(#cartOverlay.open) #floatingSearch{display:none!important}
+ body:has(#cartOverlay.open) .floating-categories{visibility:hidden!important}
+}
