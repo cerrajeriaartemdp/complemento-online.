@@ -51,7 +51,7 @@ searchBox.addEventListener('input',showSuggestions);
 searchBox.addEventListener('focus',showSuggestions);
 suggestions.addEventListener('click',e=>{
  const add=e.target.closest('[data-suggestion-add]');
- if(add){const sku=add.dataset.suggestionAdd;cart[sku]=(cart[sku]||0)+1;saveCart();add.textContent='✓ Agregado';return}
+ if(add){const sku=add.dataset.suggestionAdd;cart[sku]=Math.min(99,Number(cart[sku]||0)+1);saveCart();suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false');searchBox.value='';if(document.body.classList.contains('floating-search-open'))closeFloatingSearch();else searchBox.blur();return}
  const item=e.target.closest('[data-search-sku]');
  if(item){const p=products.find(x=>String(x.sku)===item.dataset.searchSku);if(p){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false');if(p.image_url){openPhotoModalForProduct(p)}else{searchBox.value=p.name;render();$('#notice').textContent='Este producto todavía no tiene foto.'}}}
 });
