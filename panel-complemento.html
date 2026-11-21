@@ -200,10 +200,11 @@ $('#new').onclick=()=>{products.unshift({sku:'producto-'+Date.now()+'-'+Math.ran
     pdf.setFontSize(14);pdf.setTextColor(183,54,105);pdf.text(category,margin,42);
     pdf.setFont('helvetica','normal');pdf.setFontSize(8);pdf.setTextColor(125,125,130);pdf.text('Complemento Online  |  Página '+page,199,290,{align:'right'});
    }
+   let position=0;
    for(const [category,items] of groups){
     for(let i=0;i<items.length;i++){
-     if(i%9===0)heading(category);
-     const p=items[i],slot=i%9,col=slot%3,row=Math.floor(slot/3);
+     if(position%9===0)heading(category);
+     const p=items[i],slot=position%9,col=slot%3,row=Math.floor(slot/3);
      const x=margin+col*(colW+gap),y=48+row*(cardH+4);
      pdf.setFillColor(255,255,255);pdf.setDrawColor(238,225,232);pdf.setLineWidth(.25);pdf.roundedRect(x,y,colW,cardH,2.5,2.5,'FD');
      const iw=colW-8,ih=39,ix=x+4,iy=y+3;
@@ -214,7 +215,7 @@ $('#new').onclick=()=>{products.unshift({sku:'producto-'+Date.now()+'-'+Math.ran
      const desc=pdf.splitTextToSize(String(p.description||''),colW-8).slice(0,2);if(desc.length)pdf.text(desc,x+4,y+55);
      pdf.setFillColor(255,240,246);pdf.roundedRect(x+3,y+65,colW-6,7,1.5,1.5,'F');
      pdf.setFont('helvetica','bold');pdf.setTextColor(177,48,98);pdf.setFontSize(10);pdf.text('$ '+fmt(p.price),x+5,y+70.4);
-     printed++;if(printed%6===0||printed===rows.length)status.textContent='Diseñando catálogo: '+printed+' de '+rows.length+' productos…';
+     position++;printed++;if(printed%6===0||printed===rows.length)status.textContent='Diseñando catálogo: '+printed+' de '+rows.length+' productos…';
     }
    }
    const now=new Date(),date=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
