@@ -62,10 +62,10 @@ function openCategorySheet(){$('#categorySheet').hidden=false;document.body.clas
 $('#floatingCategories').onclick=openCategorySheet;
 $('#closeCategorySheet').onclick=closeCategorySheet;
 $('#categorySheet').addEventListener('click',e=>{if(e.target.id==='categorySheet')closeCategorySheet()});
-function refreshFloatingTools(){const section=$('#categorias');const past=section.getBoundingClientRect().bottom<window.innerHeight*0.75;const show=past&&products.length>0;$('#floatingCategories').hidden=!show;$('#floatingSearch').hidden=!show}
+function refreshFloatingTools(){const section=$('#categorias');const past=section.getBoundingClientRect().bottom<window.innerHeight*0.75;const show=past&&products.length>0;$('#floatingCategories').hidden=!show;}
 window.addEventListener('scroll',refreshFloatingTools,{passive:true});window.addEventListener('resize',refreshFloatingTools);
 function closeFloatingSearch(){document.body.classList.remove('floating-search-open');$('#searchBackdrop').hidden=true;$('#closeFloatingSearch').hidden=true;$('#searchSuggestions').hidden=true;$('#search').setAttribute('aria-expanded','false');$('#search').blur()}
-$('#floatingSearch').onclick=()=>{closeCategorySheet();document.body.classList.add('floating-search-open');$('#searchBackdrop').hidden=false;$('#closeFloatingSearch').hidden=false;$('#search').focus();showSuggestions()};
+
 $('#closeFloatingSearch').onclick=closeFloatingSearch;
 $('#searchBackdrop').onclick=closeFloatingSearch;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('floating-search-open'))closeFloatingSearch()});
