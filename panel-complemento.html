@@ -232,7 +232,6 @@ $('#new').onclick=()=>{products.unshift({sku:'producto-'+Date.now()+'-'+Math.ran
  };
 })();
 
-
 (function(){
  const q=id=>document.getElementById(id), key='complemento_pricing_preferences_v1';let preview=[];
  const saved=(()=>{try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return {}}})();
@@ -308,8 +307,7 @@ download.onclick=()=>{if(!output)return;const a=document.createElement('a');a.hr
   if(!preview.length)return;const data=preview.map(p=>({sku:p.sku,name:p.name,cost:p.cost,price:p.suggested,category:p.existing?.category||''}));const json=JSON.stringify(data).replace(/</g,'\\u003c');const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Buscador de precios Complemento</title><style>body{font:16px system-ui;margin:24px;background:#fff8fb;color:#30252d}input{padding:14px;border:1px solid #e5b6cd;border-radius:12px;width:100%;box-sizing:border-box}table{width:100%;border-collapse:collapse;background:white;margin-top:20px}td,th{padding:9px;border-bottom:1px solid #eee;text-align:left}</style><h1>Complemento. · Lista de precios</h1><input id="search" placeholder="Buscar por nombre o código"><table><thead><tr><th>Código</th><th>Producto</th><th>Costo</th><th>Precio sugerido</th></tr></thead><tbody id="body"></tbody></table><script>const data='+json+';const el=document.getElementById("search"),body=document.getElementById("body");function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"}[c]))}function render(){const q=el.value.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");body.innerHTML=data.filter(p=>(p.name+" "+p.sku).toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").includes(q)).slice(0,1000).map(p=>"<tr><td>"+esc(p.sku)+"</td><td>"+esc(p.name)+"</td><td>$"+p.cost.toLocaleString("es-AR")+"</td><td>$"+p.price.toLocaleString("es-AR")+"</td></tr>").join("")}el.oninput=render;render();<\/script></html>';
   const blob=new Blob([html],{type:'text/html;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Complemento-buscador-precios.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)
  };
-})();
-
+})()
 $('#logout').onclick=()=>{sessionStorage.removeItem('complemento_access_token');localStorage.removeItem('complemento_access_token');localStorage.removeItem('complemento_refresh_token');location.replace('ingresar.html')};start();
 </script><script type="module">
 const lab=document.getElementById('imageLab'),sel=document.getElementById('imageLabSelect'),before=document.getElementById('imageLabBefore'),after=document.getElementById('imageLabAfter'),status=document.getElementById('imageLabStatus'),download=document.getElementById('imageLabDownload');
