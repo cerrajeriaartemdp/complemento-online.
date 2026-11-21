@@ -17,33 +17,60 @@ async function saveReceipt(){if(!items.length){alert('Agregá productos antes de
 
 function receiptName(x){return 'Complemento-comprobante-'+String(x.id||'venta').slice(0,8)+'.pdf'}
 async function pdfBlob(x){
- if(!window.jspdf?.jsPDF)throw Error('No se pudo cargar el generador PDF. Revisá la conexión.');
- const doc=new window.jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4'}),left=14,right=196;
- const txt=(t,x,y,opts)=>doc.text(String(t??''),x,y,opts||{});
- const line=y=>doc.line(left,y,right,y);
- doc.setTextColor(0);doc.setDrawColor(0);doc.setLineWidth(.35);
- doc.setFont('helvetica','bold');doc.setFontSize(19);txt('COMPLEMENTO',left,23);
- doc.setFont('helvetica','normal');doc.setFontSize(9);txt('San Luis 1365 - Mar del Plata',left,30);
- doc.rect(140,15,56,20);doc.setFont('helvetica','bold');doc.setFontSize(12);txt('COMPROBANTE',168,22,{align:'center'});doc.setFontSize(9);txt('NO FISCAL',168,29,{align:'center'});
- line(39);doc.setFontSize(9);doc.setFont('helvetica','normal');
- txt('Fecha: '+new Date(x.date||x.created_at).toLocaleString('es-AR'),left,47);
- txt('Referencia interna: '+String(x.id||'').slice(0,13),left,53);
- txt('Medio de pago: '+(x.payment||''),left,59);
- txt('Cliente: '+(x.customer||'Consumidor final'),110,47);
- txt('Direccion: '+(x.address||'No informada'),110,53);
- txt('CUIT / documento: '+(x.cuit||'No informado'),110,59);
- line(65);doc.setFont('helvetica','bold');txt('Descripcion',left,72);txt('Cant.',132,72);txt('Precio',159,72,{align:'right'});txt('Importe',right,72,{align:'right'});line(76);
- doc.setFont('helvetica','normal');let y=83;
- for(const item of x.items||[]){
-   const desc=doc.splitTextToSize(String(item.name||'Producto'),105);
-   if(y+desc.length*5>260){doc.addPage();y=20;}
-   doc.text(desc,left,y);txt(item.qty,132,y);txt(money(item.price),159,y,{align:'right'});txt(money(item.qty*item.price),right,y,{align:'right'});
-   y+=Math.max(8,desc.length*5+3);
+ const encoder=new TextEncoder(),objects=[],pageIds=[],pages=[];
+ const ascii=t=>String(t??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x20-\x7e]/g,'?');
+ const esc=t=>ascii(t).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
+ const drawText=(t,xx,yy,size=10,bold=false)=>'BT /'+(bold?'F2':'F1')+' '+size+' Tf 1 0 0 1 '+xx+' '+yy+' Tm ('+esc(t)+') Tj ET\n';
+ const rect=(xx,yy,w,h)=>xx+' '+yy+' '+w+' '+h+' re S\n';
+ const line=(x1,y1,x2,y2)=>x1+' '+y1+' m '+x2+' '+y2+' l S\n';
+ const width=t=>ascii(t).length*5.1;
+ let commands='',y=580,page=0;
+ function startPage(){
+   if(page)pages.push(commands);
+   page++;commands='0 G 0 g 0.8 w\n';
+   commands+=rect(40,747,515,66);
+   commands+=drawText('COMPLEMENTO',53,785,19,true)+drawText('San Luis 1365 - Mar del Plata',53,765,9);
+   commands+=rect(397,763,145,40)+drawText('COMPROBANTE',409,786,12,true)+drawText('NO FISCAL',434,772,9,true);
+   commands+=line(40,740,555,740);
+   commands+=drawText('Fecha: '+new Date(x.date||x.created_at).toLocaleString('es-AR'),45,723,9);
+   commands+=drawText('Referencia: '+String(x.id||'').slice(0,16),45,707,9);
+   commands+=drawText('Pago: '+(x.payment||''),45,691,9);
+   commands+=drawText('Cliente: '+(x.customer||'Consumidor final'),300,723,9);
+   commands+=drawText('Direccion: '+(x.address||'No informada'),300,707,9);
+   commands+=drawText('CUIT / documento: '+(x.cuit||'No informado'),300,691,9);
+   commands+=line(40,677,555,677);
+   commands+=drawText('Descripcion',45,660,10,true)+drawText('Cant.',373,660,10,true)+drawText('Precio',429,660,10,true)+drawText('Importe',494,660,10,true)+line(40,650,555,650);
+   y=632;
  }
- doc.setPage(doc.internal.getNumberOfPages());
- line(266);doc.setFont('helvetica','bold');doc.setFontSize(16);txt('TOTAL',left,277);txt(money(x.total),right,277,{align:'right'});
- doc.setFont('helvetica','normal');doc.setFontSize(8);txt('Documento comercial no fiscal. No reemplaza una factura autorizada por ARCA.',left,286);
- return doc.output('blob');
+ startPage();
+ for(const item of x.items||[]){
+   const name=ascii(item.name||'Producto');
+   const chunks=name.match(/.{1,55}/g)||[''];
+   if(y-chunks.length*13<100)startPage();
+   for(const chunk of chunks){commands+=drawText(chunk,45,y,9);y-=13;}
+   commands+=drawText(item.qty,376,y+13,9)+drawText(money(item.price),417,y+13,9)+drawText(money(item.qty*item.price),482,y+13,9);
+   y-=9;
+ }
+ commands+=line(40,93,555,93)+drawText('TOTAL',45,67,17,true)+drawText(money(x.total),408,67,17,true);
+ commands+=drawText('Documento comercial no fiscal. No reemplaza una factura autorizada por ARCA.',42,38,8);
+ pages.push(commands);
+ function add(o){objects.push(o);return objects.length}
+ const catalog=add('<< /Type /Catalog /Pages 2 0 R >>');
+ const pagesRoot=add('');
+ const font1=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
+ const font2=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+ for(const stream of pages){
+   const bytes=encoder.encode(stream),contentId=add('<< /Length '+bytes.length+' >>\nstream\n'+stream+'endstream');
+   const pageId=add('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 '+font1+' 0 R /F2 '+font2+' 0 R >> >> /Contents '+contentId+' 0 R >>');
+   pageIds.push(pageId);
+ }
+ objects[1]='<< /Type /Pages /Kids ['+pageIds.map(i=>i+' 0 R').join(' ')+'] /Count '+pageIds.length+' >>';
+ let out='%PDF-1.4\n',offsets=[0];
+ for(let i=0;i<objects.length;i++){offsets.push(encoder.encode(out).length);out+=(i+1)+' 0 obj\n'+objects[i]+'\nendobj\n'}
+ const xref=encoder.encode(out).length;out+='xref\n0 '+(objects.length+1)+'\n0000000000 65535 f \n';
+ for(let i=1;i<offsets.length;i++)out+=String(offsets[i]).padStart(10,'0')+' 00000 n \n';
+ out+='trailer\n<< /Size '+(objects.length+1)+' /Root '+catalog+' 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+ return new Blob([encoder.encode(out)],{type:'application/pdf'});
 }
 function downloadPdfBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
 async function receiptAction(x,action){
