@@ -53,7 +53,7 @@ suggestions.addEventListener('click',e=>{
  const add=e.target.closest('[data-suggestion-add]');
  if(add){const sku=add.dataset.suggestionAdd;cart[sku]=Math.min(99,Number(cart[sku]||0)+1);saveCart();suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false');searchBox.value='';if(document.body.classList.contains('floating-search-open'))closeFloatingSearch();else searchBox.blur();return}
  const item=e.target.closest('[data-search-sku]');
- if(item){const p=products.find(x=>String(x.sku)===item.dataset.searchSku);if(p){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false');if(p.image_url){openPhotoModalForProduct(p)}else{searchBox.value=p.name;render();$('#notice').textContent='Este producto todavía no tiene foto.'}}}
+ if(item){const p=products.find(x=>String(x.sku)===item.dataset.searchSku);if(p){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false');searchBox.value='';if(document.body.classList.contains('floating-search-open'))closeFloatingSearch();else searchBox.blur();if(p.image_url){openPhotoModalForProduct(p)}else{render();$('#notice').textContent='Este producto todavía no tiene foto.'}}}
 });
 document.addEventListener('click',e=>{if(!e.target.closest('.top-search')){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false')}});
 searchBox.addEventListener('keydown',e=>{if(e.key==='Escape'){suggestions.hidden=true;searchBox.setAttribute('aria-expanded','false')}});
@@ -94,7 +94,7 @@ function openPhotoModal(img){if(!img?.getAttribute('src'))return;const card=img.
 function openPhotoModalForProduct(p){if(!p?.image_url)return;displayPhotoProduct(p,p.image_url)}
 $('#photoQtyMinus').onclick=()=>setPhotoQuantity(photoQuantity-1);
 $('#photoQtyPlus').onclick=()=>setPhotoQuantity(photoQuantity+1);
-$('#photoAdd').onclick=()=>{if(!photoProduct)return;const sku=photoProduct.sku;cart[sku]=Math.min(99,Number(cart[sku]||0)+photoQuantity);saveCart();$('#photoAddStatus').textContent='✓ '+photoQuantity+' agregado(s) al carrito'};
+$('#photoAdd').onclick=()=>{if(!photoProduct)return;const sku=photoProduct.sku;cart[sku]=Math.min(99,Number(cart[sku]||0)+photoQuantity);saveCart();suggestions.hidden=true;searchBox.value='';searchBox.setAttribute('aria-expanded','false');if(document.body.classList.contains('floating-search-open'))closeFloatingSearch();$('#photoAddStatus').textContent='✓ '+photoQuantity+' agregado(s) al carrito'};
 ['#products','#featuredTrack'].forEach(selector=>$(selector).addEventListener('click',event=>{const img=event.target.closest('[data-view-photo]')?.closest('.product,.featured-card')?.querySelector('img')||event.target.closest('.photo img,.featured-photo img');if(img)openPhotoModal(img)}));
 $('#closePhoto').addEventListener('click',closePhotoModal);
 photoModal.addEventListener('click',event=>{if(event.target===photoModal)closePhotoModal()});
